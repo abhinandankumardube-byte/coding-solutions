@@ -49,8 +49,8 @@ Since an empty string reads the same forward and backward, it is a palindrome.
 
 **Language:** Java  
 **Runtime:** 4 ms (beats 45.16%)  
-**Memory:** 44.9 MB (beats 39.59%)  
-**Submitted:** 2026-08-19T08:59:42.791Z  
+**Memory:** 44.6 MB (beats 44.87%)  
+**Submitted:** 2026-08-19T09:10:36.381Z  
 
 ```java
 class Solution {
@@ -67,8 +67,12 @@ class Solution {
         return checkPalin(ns.toString());
     }
     boolean checkPalin(String s){
-        String rev= new StringBuilder(s).reverse().toString();
-        return s.equals(rev);
+        int i=0,j=s.length()-1;
+        while(i<j){
+            if(s.charAt(i)!=s.charAt(j))return false;
+            i++;j--;
+        }
+        return true;
     }
 }
 ```

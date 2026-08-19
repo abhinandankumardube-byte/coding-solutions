@@ -12,7 +12,11 @@ class Solution {
         return checkPalin(ns.toString());
     }
     boolean checkPalin(String s){
-        String rev= new StringBuilder(s).reverse().toString();
-        return s.equals(rev);
+        int i=0,j=s.length()-1;
+        while(i<j){
+            if(s.charAt(i)!=s.charAt(j))return false;
+            i++;j--;
+        }
+        return true;
     }
 }

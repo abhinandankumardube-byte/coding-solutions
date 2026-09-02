@@ -37,29 +37,34 @@ Output: false
 ## Solution
 
 **Language:** Java  
-**Runtime:** 163 ms (beats 10.33%)  
-**Memory:** 46.7 MB (beats 20.71%)  
-**Submitted:** 2026-09-02T08:57:05.774Z  
+**Runtime:** 6 ms (beats 87.65%)  
+**Memory:** 44.2 MB (beats 37.68%)  
+**Submitted:** 2026-09-02T09:25:41.808Z  
 
 ```java
 class Solution {
     public boolean checkInclusion(String s1, String s2) {
+        int f1[]=new int[26];
+        for(char ch:s1.toCharArray())f1[ch-'a']++;
+
         int k=s1.length();
-        for(int i=0;i<=s2.length()-k;i++){
-            String sub = s2.substring(i, i+k);
-            if(isAnagram(s1, sub))return true;
+
+        int f2[]=new int[26];
+        for(int i=0;i<s2.length();i++){
+            char ch=s2.charAt(i);
+            // include
+            f2[ch-'a']++;
+            if(i<k-1)continue;
+
+            if(Arrays.equals(f1,f2))return true;
+            // shrink  or remove
+            int sin = i-k+1;
+            char sch = s2.charAt(sin);
+            f2[sch-'a']--;
         }
         return false;
     }
-    public boolean isAnagram(String s, String t) {
-        int f1[]=new int[26];
-        for(char ch:s.toCharArray()){
-            f1[ch - 'a']++;
-        }
-        int f2[]=new int[26];
-        for(char ch:t.toCharArray())f2[ch-'a']++;
-        return Arrays.equals(f1,f2);
-    }
+    
 }
 ```
 
